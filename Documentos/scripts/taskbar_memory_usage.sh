@@ -36,9 +36,9 @@ while :;do
     mem_stats+=($(/bin/grep -e "MemTotal" -e "MemAvailable" -e 'SwapTotal' -e 'SwapFree' /proc/meminfo))
     mem_used=$(((mem_stats[1] - mem_stats[4]) - 256000))
     swap_used=$((mem_stats[7] - mem_stats[10]))
-    if /bin/grep -q 'ENABLED=no' /etc/ufw/ufw.conf; then
-        DATA='| C | Firewall <b>desativado</b> \| RAM: <b>'$(size $mem_used)'</b> \| Swap: <b>'$(size $swap_used)'</b> | | '$command' |';
-    elif [ "$(/usr/bin/pgrep easyeffects)" ]; then
+#     if /bin/grep -q 'ENABLED=no' /etc/ufw/ufw.conf; then
+#         DATA='| C | Firewall <b>desativado</b> \| RAM: <b>'$(size $mem_used)'</b> \| Swap: <b>'$(size $swap_used)'</b> | | '$command' |';
+    if [ "$(/usr/bin/pgrep easyeffects)" ]; then
         if [ $mem_used -ge 7000000 ];then
             DATA='| B | EasyEffects <b>ligado</b> \| RAM: <b>'$(size $mem_used)'</b> \| Swap: <b>'$(size $swap_used)'</b> | | '$command' |'
         else
